@@ -2,7 +2,7 @@
 import os
 import cv2
 import numpy as np
-from typing import List, Tuple, Iterator, Union
+from typing import List, Tuple, Union
 from matplotlib import pyplot as plt
 
 
