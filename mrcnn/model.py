@@ -1183,7 +1183,7 @@ def mrcnn_mask_loss_graph(target_masks, target_class_ids, pred_masks):
 #  Data Generator
 ############################################################
 
-def load_image_gt(dataset, config, image_id, augment=False, augmentation=None,
+def load_image_gt(dataset: utils.Dataset, config, image_id, augment=False, augmentation=None,
                   use_mini_mask=False):
     """Load and return ground truth data for an image (image, mask, bounding boxes).
 
@@ -1208,8 +1208,9 @@ def load_image_gt(dataset, config, image_id, augment=False, augmentation=None,
         defined in MINI_MASK_SHAPE.
     """
     # Load image and mask
-    image = dataset.load_image(image_id)
-    mask, class_ids = dataset.load_mask(image_id)
+    # image = dataset.load_image(image_id)
+    # mask, class_ids = dataset.load_mask(image_id)
+    image, mask, class_ids = dataset.load_image_mask(image_id)
     original_shape = image.shape
     image, window, scale, padding, crop = utils.resize_image(
         image,

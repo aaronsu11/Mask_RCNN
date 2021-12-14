@@ -12,6 +12,7 @@ import os
 import logging
 import math
 import random
+from typing import Tuple
 import numpy as np
 import tensorflow as tf
 import scipy
@@ -383,6 +384,14 @@ class Dataset(object):
         mask = np.empty([0, 0, 0])
         class_ids = np.empty([0], np.int32)
         return mask, class_ids
+
+    def load_image_mask(self, image_id) -> Tuple[np.ndarray, np.ndarray, int]:
+        '''Encapulate image and mask loading into one function
+        so that it can be overwritten to load in one step
+        '''
+        image = self.load_image(image_id)
+        mask, class_ids = self.load_mask(image_id)
+        return image, mask, class_ids
 
 
 def resize_image(image, min_dim=None, max_dim=None, min_scale=None, mode="square"):
